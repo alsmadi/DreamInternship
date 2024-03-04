@@ -1,0 +1,60 @@
+
+
+  <div style="padding-bottom: 10%;">
+<div class="card" >
+  <p-table [value]="table" 
+  styleClass=" p-datatable-gridlines"
+  [exportHeader]="'customExportHeader'"
+  [paginator]="true"
+  [scrollable]="true"
+  scrollHeight="400px"
+  [resizableColumns]="true"
+    [rows]="5"
+    [showCurrentPageReport]="true"
+    [tableStyle]="{ 'max-width': '50rem' }"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [rowsPerPageOptions]="[5, 10, 20,50,100,300]">
+    <ng-template pTemplate="caption">
+      <div class="flex">
+          <button type="button" pButton pRipple (click)="exportCSV()" class="mr-2"  data-toggle="tooltip" data-placement="bottom" title="Export to Excel">Export To Excel</button>
+      </div>
+  </ng-template>
+      <ng-template pTemplate="header">
+          <tr>
+            <th pSortableColumn="department" pFrozenColumn  pResizableColumn>Company <p-sortIcon field="department"></p-sortIcon></th>
+            
+              <th  pSortableColumn="title"  pResizableColumn>title<p-sortIcon field="title"></p-sortIcon></th>
+              <th pSortableColumn="location"  pResizableColumn>location<p-sortIcon field="location"></p-sortIcon></th>
+              <th pSortableColumn="summary"  pResizableColumn>summary<p-sortIcon field="summary"></p-sortIcon></th>
+              <th pSortableColumn="URL"  pResizableColumn>URL<p-sortIcon field="URL"></p-sortIcon></th>
+              <th pSortableColumn="startDate"  pResizableColumn>startDate<p-sortIcon field="startDate"></p-sortIcon></th>
+              <th pSortableColumn="closeDate"  pResizableColumn>closeDate<p-sortIcon field="closeDate"></p-sortIcon></th>
+              <th pSortableColumn="education" pResizableColumn >education<p-sortIcon field="education"></p-sortIcon></th>
+              <th pSortableColumn="requirements"  pResizableColumn>requirements<p-sortIcon field="requirements"></p-sortIcon></th>
+              <th pSortableColumn="minSalary" pResizableColumn >minSalary<p-sortIcon field="minSalary"></p-sortIcon></th>
+              <th pSortableColumn="status" pResizableColumn >status<p-sortIcon field="status"></p-sortIcon></th>
+              <th pSortableColumn="maxSalary"  pResizableColumn>maxSalary<p-sortIcon field="maxSalary"></p-sortIcon></th>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-product>
+          <tr>
+              <td pFrozenColumn>{{ product.department }}</td>
+              <td>{{ product.title }}</td>
+              <td>{{ product.location }}</td>
+              <td>{{ product.summary }}</td>
+              <td>{{ product.url }}</td>
+              <td>{{ product.startDate }}</td>
+              <td>{{ product.closeDate }}</td>
+              <td>{{ product.education }}</td>
+              <td>{{ product.requirements }}</td>
+              <td>{{ product.minSalary }}</td>
+              <td>{{ product.status }}</td>
+              <td>{{ product.maxSalary }}</td>
+              
+
+          </tr>
+      </ng-template>
+      
+  </p-table>
+</div>
+  </div>
