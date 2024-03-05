@@ -1,7 +1,6 @@
 import { Component,OnInit } from '@angular/core';
 import { HttpcallService } from '../Services/httpcall.service';
 import { JobsProfile } from '../Interfaces/JobsClass';
-import { TableModule } from 'primeng/table';
 
 @Component({
   selector: 'app-data-table',
@@ -9,10 +8,12 @@ import { TableModule } from 'primeng/table';
   styleUrls: ['./data-table.component.css']
 })
 export class DataTableComponent implements OnInit {
-  table!: JobsProfile;
+  table!: JobsProfile ;
   cols:any;
   exportColumns:any
   saveAsExcelFile: any;
+temparray!:any
+Loader:boolean=true
 
 constructor(private Httpservice:HttpcallService){
   var data=this.Httpservice.getJobs();
@@ -20,8 +21,29 @@ constructor(private Httpservice:HttpcallService){
 }
 
    ngOnInit() {
+    this.temparray = [ 
+      { 
+          Company: 'Varun', 
+          Title: 'Pratap', 
+          summary: 'jk',
+          URL:"kjh"
+      }, 
+      { 
+        Company: 'Varun', 
+        Title: 'Pratap', 
+        summary: 'jk',
+        URL:"kjh"
+      }, 
+      { 
+        Company: 'Varun', 
+        Title: 'Pratap', 
+        summary: 'jk',
+        URL:"kjh"
+      } ,
+  ]; 
     this.Httpservice.getJobs().subscribe(res=>{
       this.table=res;
+      this.Loader=false;
          });
     
   }

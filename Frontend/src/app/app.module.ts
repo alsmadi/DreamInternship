@@ -10,8 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-
+import {SkeletonModule} from 'primeng/skeleton'
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,11 +21,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   ],
   imports: [
     BrowserModule,
+    SkeletonModule,
     AppRoutingModule,
     HttpClientModule,
     TableModule,
     ButtonModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
