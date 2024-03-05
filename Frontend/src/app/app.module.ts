@@ -11,6 +11,7 @@ import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {SkeletonModule} from 'primeng/skeleton'
+import { ToastModule } from 'primeng/toast';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +28,7 @@ import {SkeletonModule} from 'primeng/skeleton'
     TableModule,
     ButtonModule,
     BrowserAnimationsModule,
+    ToastModule
     
   ],
   providers: [],

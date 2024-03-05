@@ -1,11 +1,14 @@
 import { Component,OnInit } from '@angular/core';
 import { HttpcallService } from '../Services/httpcall.service';
 import { JobsProfile } from '../Interfaces/JobsClass';
+import { catchError, throwError } from 'rxjs';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-data-table',
   templateUrl: './data-table.component.html',
-  styleUrls: ['./data-table.component.css']
+  styleUrls: ['./data-table.component.css'],
+  providers: [MessageService]
 })
 export class DataTableComponent implements OnInit {
   table!: JobsProfile ;
@@ -15,7 +18,7 @@ export class DataTableComponent implements OnInit {
 temparray!:any
 Loader:boolean=true
 
-constructor(private Httpservice:HttpcallService){
+constructor(private Httpservice:HttpcallService,private messageService: MessageService){
   var data=this.Httpservice.getJobs();
   console.log(data)
 }
@@ -41,7 +44,17 @@ constructor(private Httpservice:HttpcallService){
         URL:"kjh"
       } ,
   ]; 
-    this.Httpservice.getJobs().subscribe(res=>{
+    this.Httpservice.getJobs()
+    .pipe(
+      catchError((error) => {
+        
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error Occured' });
+        console.log(error);
+        return throwError("Eror Occured");
+      })
+    )
+    
+    .subscribe(res=>{
       this.table=res;
       this.Loader=false;
          });
