@@ -29,15 +29,15 @@ const jobSchema = new mongoose.Schema({
 const Job = mongoose.model("Job", jobSchema);
 
 // connect to MongoDB database
-try{
-  mongoose.connect("mongodb://127.0.0.1:27017/Internships", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-}
-catch{
-  console.log("error");
-}
+// try{
+//   mongoose.connect("mongodb://127.0.0.1:27017/Internships", {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// });
+// }
+// catch{
+//   console.log("error");
+// }
 
 app.get("/jobs", async (req, res) => {
   const handshakePostings =
@@ -141,7 +141,7 @@ app.get("/jobs", async (req, res) => {
       }));
 
       allListings = allListings.concat(formattedUsajobsListings);
-      await Job.insertMany(allListings);
+      //await Job.insertMany(allListings);
 
       
       res.status(200).send(allListings);
