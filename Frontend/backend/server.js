@@ -1,3 +1,5 @@
+const dotenv=require('dotenv');
+dotenv.config({path:'./.env'})
 const express = require("express");
 const axios = require("axios");
 const app = express();
@@ -45,7 +47,7 @@ app.get("/jobs", async (req, res) => {
 
   const REACT_APP_USER_AGENT = "YOUR_EMAIL";
   const usajobsHost = "data.usajobs.gov";
-  const usajobsApiKey = "Y0goSBrQ4Jr4ngwSPSkM9oeueCTHV3yabmdTmtkbGnw=";
+  const usajobsApiKey = process.env.USAJOBAPIKEY;
   const usajobsEndpoint = `https://${usajobsHost}/api/search?Page=1&ResultsPerPage=100&Keyword=Internship`;
   const usajobsParams = [
     {
@@ -55,7 +57,7 @@ app.get("/jobs", async (req, res) => {
   ];
   const handshakeOptions = {
     headers: {
-      Authorization: 'Token token="a53190cfe3c78c893edbe6dd0a8da315"',
+      Authorization: 'Token token='+process.env.HANDSHAKE_TOKEN,
       "Content-Type": "application/json",
       "Cache-Control": "no-cache",
     },
