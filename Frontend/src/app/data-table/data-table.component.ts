@@ -1,27 +1,62 @@
 import { Component,OnInit } from '@angular/core';
 import { HttpcallService } from '../Services/httpcall.service';
 import { JobsProfile } from '../Interfaces/JobsClass';
-import { TableModule } from 'primeng/table';
+import { catchError, throwError } from 'rxjs';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-data-table',
   templateUrl: './data-table.component.html',
-  styleUrls: ['./data-table.component.css']
+  styleUrls: ['./data-table.component.css'],
+  providers: [MessageService]
 })
 export class DataTableComponent implements OnInit {
-  table!: JobsProfile;
+  table!: JobsProfile ;
   cols:any;
   exportColumns:any
   saveAsExcelFile: any;
+temparray!:any
+Loader:boolean=true
 
-constructor(private Httpservice:HttpcallService){
+constructor(private Httpservice:HttpcallService,private messageService: MessageService){
   var data=this.Httpservice.getJobs();
   console.log(data)
 }
 
    ngOnInit() {
-    this.Httpservice.getJobs().subscribe(res=>{
+    this.temparray = [ 
+      { 
+          Company: 'Varun', 
+          Title: 'Pratap', 
+          summary: 'jk',
+          URL:"kjh"
+      }, 
+      { 
+        Company: 'Varun', 
+        Title: 'Pratap', 
+        summary: 'jk',
+        URL:"kjh"
+      }, 
+      { 
+        Company: 'Varun', 
+        Title: 'Pratap', 
+        summary: 'jk',
+        URL:"kjh"
+      } ,
+  ]; 
+    this.Httpservice.getJobs()
+    .pipe(
+      catchError((error) => {
+        
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error Occured' });
+        console.log(error);
+        return throwError("Eror Occured");
+      })
+    )
+    
+    .subscribe(res=>{
       this.table=res;
+      this.Loader=false;
          });
     
   }

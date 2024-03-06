@@ -1,9 +1,36 @@
+<div class="card flex justify-content-center">
+  <p-toast [breakpoints]="{'920px': {width: '100%', right: '0', left: '0'}}"></p-toast>
+</div>
 
 
   <div style="padding-bottom: 10%;">
-<div class="card" >
+    
+   <div *ngIf="Loader">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col"><p-skeleton height="2rem"  ></p-skeleton></th>
+          <th scope="col"><p-skeleton height="2rem"  ></p-skeleton></th>
+          <th scope="col"><p-skeleton height="2rem"  ></p-skeleton></th>
+          <th scope="col"><p-skeleton height="2rem"  ></p-skeleton></th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of temparray">
+          <th><p-skeleton height="2rem"  ></p-skeleton></th>
+          <th><p-skeleton height="2rem"  ></p-skeleton></th>
+          <th><p-skeleton height="2rem"  ></p-skeleton></th>
+          <th><p-skeleton height="2rem"  ></p-skeleton></th>
+      </tr>
+      </tbody>
+    </table>
+   
+   </div>
+<div class="card" *ngIf="!Loader">
   <p-table [value]="table" 
-  styleClass=" p-datatable-gridlines"
+  styleClass=" p-datatable-striped"
+  
   [exportHeader]="'customExportHeader'"
   [paginator]="true"
   [scrollable]="true"
@@ -50,11 +77,8 @@
               <td>{{ product.minSalary }}</td>
               <td>{{ product.status }}</td>
               <td>{{ product.maxSalary }}</td>
-              
-
           </tr>
       </ng-template>
-      
   </p-table>
 </div>
   </div>
