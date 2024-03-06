@@ -162,3 +162,5 @@ app.get("/jobs", async (req, res) => {
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}/jobs`);
 });
+
+export default app
