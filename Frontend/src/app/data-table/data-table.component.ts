@@ -48,7 +48,7 @@ constructor(private Httpservice:HttpcallService,private messageService: MessageS
     .pipe(
       catchError((error) => {
         
-          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error Occured' });
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error Occured Please try again' });
         console.log(error);
         return throwError("Eror Occured");
       })
